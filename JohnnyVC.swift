@@ -10,6 +10,9 @@ import UIKit
 
 class JohnnyVC: UIViewController {
 
+    var ladyButton = UIButton()
+    var gagaButton = UIButton()
+    var fxxkButton = UIButton()
 
     
     
@@ -19,23 +22,17 @@ class JohnnyVC: UIViewController {
 
         self.view.backgroundColor = UIColor.whiteColor()
         
-    allUi()
-    
-       
+        allUi()
+        giveMeAutoLayout()
     }
 
-    //有加這方法 staus bar 就會不見
-    override func prefersStatusBarHidden() -> Bool
-    {
-        return true
-    }
-    
+ 
     
     
     func allUi()
     {
     
-        let ladyButton = UIButton()
+        
         ladyButton.frame = CGRectMake(100, 270, 100, 50)//其實如果有auto layout 這frame就沒作用了
         ladyButton.backgroundColor = UIColor.redColor()
         ladyButton.setTitle("haha", forState: .Normal)
@@ -44,7 +41,6 @@ class JohnnyVC: UIViewController {
         self.view.addSubview(ladyButton)
         
         
-        let gagaButton = UIButton()
         gagaButton.frame = CGRectMake(250, 270, 100, 50)//其實如果有auto layout 這frame就沒作用了
         gagaButton.backgroundColor = UIColor.redColor()
         gagaButton.setTitle("gaga", forState: .Normal)
@@ -52,23 +48,33 @@ class JohnnyVC: UIViewController {
         gagaButton.translatesAutoresizingMaskIntoConstraints = (false) //這句一定要加
         self.view.addSubview(gagaButton)
         
+        fxxkButton.backgroundColor = UIColor.cyanColor()
+        fxxkButton.setTitle("fxxk", forState: .Normal)
+        fxxkButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        fxxkButton.translatesAutoresizingMaskIntoConstraints = (false)
+        fxxkButton.addTarget(self, action: "toNetPage:", forControlEvents: .TouchUpInside)
+        self.view.addSubview(fxxkButton)
+        
+
+        
+    }
+    
+    
+    func toNetPage(sender:UIButton)
+    {
+        let controller = MainTVC()
+        self.navigationController!.pushViewController(controller, animated: true)
         
         
-//        let leftConstraint = NSLayoutConstraint(item: hahaButton, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.LeadingMargin, multiplier: 1.0, constant: 0)
-//        
-//        let rightConstraint = NSLayoutConstraint(item: hahaButton, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.TrailingMargin, multiplier: 1.0, constant: -100)
-//        
-//        let topConstraint = NSLayoutConstraint(item: hahaButton, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.TopMargin, multiplier: 1.0, constant: 100)
-//        
-//        view.addConstraints([leftConstraint,rightConstraint,topConstraint])
-        
-        
+    }
+    
+    
+    func giveMeAutoLayout()
+    {
         //先用字典把要做auto layout 的物件裝在一起
-        let justDic = ["ladyButton":ladyButton , "gagaButton":gagaButton]
+        let justDic = ["ladyButton":ladyButton , "gagaButton":gagaButton , "fxxkButton":fxxkButton]
         
-        
-        
-        
+        //ladyButton 和 gagaButton
         let horizonConstraints =
         NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[ladyButton]-20-[gagaButton]-20-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: justDic)
         self.view.addConstraints(horizonConstraints)
@@ -78,17 +84,6 @@ class JohnnyVC: UIViewController {
         
         let equalWidthConstraints02 = NSLayoutConstraint.constraintsWithVisualFormat("[gagaButton(==ladyButton)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: justDic)
         self.view.addConstraints(equalWidthConstraints02)
-
-        
-//        let verticalConstraints01 = NSLayoutConstraint.constraintsWithVisualFormat("V:[ladyButton]-30-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: justDic)
-//        self.view.addConstraints(verticalConstraints01)
-//
-//    
-//        let verticalConstraints02 = NSLayoutConstraint.constraintsWithVisualFormat("V:[gagaButton]-30-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: justDic)
-//        self.view.addConstraints(verticalConstraints02)
-
-        
-        
         
         let ladyButtonHeight = NSLayoutConstraint.constraintsWithVisualFormat("V:[ladyButton(50)]-30-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: justDic)
         self.view.addConstraints(ladyButtonHeight)
@@ -97,9 +92,19 @@ class JohnnyVC: UIViewController {
         self.view.addConstraints(gagaButtonHeight)
         
         
+        //fxxkutton
+        let fxxkButtonLeftAndRight = NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[fxxkButton]-20-|", options: NSLayoutFormatOptions.AlignAllRight, metrics: nil, views: justDic)
+        self.view.addConstraints(fxxkButtonLeftAndRight)
+        
+        
+        let fxxkButtonBottom = NSLayoutConstraint.constraintsWithVisualFormat("V:[fxxkButton(50)]-90-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: justDic)
+        self.view.addConstraints(fxxkButtonBottom)
+        
+        
+        
+        
+        
     }
-    
-    
     
     
     

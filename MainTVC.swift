@@ -11,6 +11,11 @@ import UIKit
 class MainTVC: UITableViewController {
 
     
+    var imageArray = ["001","002","003","004"]
+    var nameArray = ["one","two","three","four"]
+    
+    
+    
     
     override func viewDidLoad()
     {
@@ -38,16 +43,20 @@ class MainTVC: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 0
+        return imageArray.count
     }
 
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    {
+        return 100
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("MainCell", forIndexPath: indexPath) as! MainCell
 
-
-        
+        cell.bandName.text = nameArray[indexPath.row]
+        cell.bandPhoto.image = UIImage(named: imageArray[indexPath.row])
         
         return cell
     }

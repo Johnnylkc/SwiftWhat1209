@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,8 +15,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
+    {
+
+        
+        
+        let onePage = JohnnyVC()
+        let oneNav = UINavigationController(rootViewController: onePage)
+        
+        
+        self.window = UIWindow(frame:UIScreen.mainScreen().bounds)
+        self.window!.rootViewController = oneNav
+        self.window!.makeKeyAndVisible()
+        
+        
+        
+        Parse.setApplicationId("O1GZwLb5af1CeS9MRx0pLMlochPiRImbpZLwP34A",
+            clientKey: "seLD57C4upoarACD4RhXvtRdPPDq4ewB6YmCECDn")
+        
+                
+        
         return true
     }
 

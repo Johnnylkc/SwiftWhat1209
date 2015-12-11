@@ -21,11 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         let onePage = JohnnyVC()
-        let oneNav = UINavigationController(rootViewController: onePage)
         
         
         self.window = UIWindow(frame:UIScreen.mainScreen().bounds)
-        self.window!.rootViewController = oneNav
+        self.window!.rootViewController = onePage
         self.window!.makeKeyAndVisible()
         
         

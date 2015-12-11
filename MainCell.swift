@@ -20,21 +20,21 @@ class MainCell: UITableViewCell {
     {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        bandPhoto.frame = CGRectMake(0, 0, 80, 80)
+        
         bandPhoto.contentMode = .ScaleAspectFill
         bandPhoto.clipsToBounds = true
         bandPhoto.layer.cornerRadius = 40
         bandPhoto.translatesAutoresizingMaskIntoConstraints = (false)
         self.contentView.addSubview(bandPhoto)
         
-        bandName.frame = CGRectMake(100, 50, 120, 40)
         bandName.textColor = UIColor.redColor()
+        bandName.backgroundColor = UIColor.grayColor()
         bandName.font = UIFont.boldSystemFontOfSize(20)
         bandName.translatesAutoresizingMaskIntoConstraints = (false)
         self.contentView.addSubview(bandName)
         
         
-       // cellAutoLayout()
+        cellAutoLayout()
         
     }
 
@@ -47,17 +47,25 @@ class MainCell: UITableViewCell {
         
         let justDic = ["bandPhoto":bandPhoto , "bandName":bandName]
         
-        let left = NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[bandPhoto]-20-[bandName]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: justDic)
+        let left = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[bandPhoto(80)]-20-[bandName(100)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: justDic)
         contentView.addConstraints(left)
         
         
+        let top  = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[bandPhoto(80)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: justDic)
+        contentView.addConstraints(top)
+        
+        
+        let labelTop = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[bandName(80)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: justDic)
+        contentView.addConstraints(labelTop)
+
         
     }
     
     
     
     
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder)
+    {
         fatalError("init(coder:) has not been implemented")
     }
     

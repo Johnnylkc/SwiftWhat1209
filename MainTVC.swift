@@ -22,6 +22,10 @@ class MainTVC: UITableViewController {
         super.viewDidLoad()
 
         self.tableView.registerClass(MainCell.self, forCellReuseIdentifier: "MainCell")
+        
+        self.title = "這裡放標題"
+        
+        
      
         
         

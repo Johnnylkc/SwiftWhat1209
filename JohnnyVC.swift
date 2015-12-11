@@ -60,18 +60,22 @@ class JohnnyVC: UIViewController {
     }
     
     
+    
     func toNetPage(sender:UIButton)
     {
         let controller = MainTVC()
-        self.navigationController!.pushViewController(controller, animated: true)
-        
-        
+        let nav = UINavigationController(rootViewController: controller)
+        controller.modalTransitionStyle = .CrossDissolve
+        self.presentViewController(nav, animated: true, completion: nil)
     }
+    
+    
     
     
     func giveMeAutoLayout()
     {
-        //先用字典把要做auto layout 的物件裝在一起
+        //先用字典把要做auto layout 的物件裝在一起 key:value名字都取一樣比較好記
+
         let justDic = ["ladyButton":ladyButton , "gagaButton":gagaButton , "fxxkButton":fxxkButton]
         
         //ladyButton 和 gagaButton
